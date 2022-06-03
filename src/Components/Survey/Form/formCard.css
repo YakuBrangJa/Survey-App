@@ -1,0 +1,61 @@
+.form-card {
+  margin-bottom: 2rem;
+}
+
+.form-card fieldset {
+  border: none;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  background-color: white;
+}
+.card-header {
+  padding: 1rem 1rem 0.9rem 1rem;
+  display: flex;
+  gap: 0.3rem;
+  font-size: 1.15rem;
+  border-bottom: 1px solid #bbbbbb;
+  transition: background 150ms linear;
+}
+
+.form-card.checked .card-header {
+  background-color: var(--color-primary4b);
+}
+.form-card.invalid-form .card-header {
+  background-color: var(--color-danger2b);
+}
+.form-card.checked.invalid-form .card-header {
+  background-color: var(--color-primary4b);
+}
+
+.options {
+  padding: 0.5rem 0;
+}
+
+.options .option-item {
+  padding: 0.7rem 1.5rem;
+  display: flex;
+  align-items: center;
+}
+.option-item .option-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.option-wrapper input[type="radio"] {
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.option-item label {
+  line-height: 1.1rem;
+  margin-left: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+@media (max-width: 576px) {
+  .options .option-item {
+    padding: 0.6rem 1rem;
+  }
+}

@@ -1,13 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* outline: 1px solid violet; */
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+:root {
+  /* BACKGROUND COLORS */
+
+  --bg1: #eeeeee;
+
+  /* COLOR */
+  --color-primary1: #2640d1;
+  --color-primary1b: #2640d1aa;
+  --color-primary2: #4259db;
+  --color-primary2b: #4259dbaa;
+  --color-primary3: #5568d9;
+  --color-primary3b: #5568d9aa;
+  --color-primary4: #6075db;
+  --color-primary4b: #6075dbaa;
+  --color-primary4c: #6075db44;
+
+  --color-danger1: #d12c26;
+  --color-danger1b: #d12c2655;
+  --color-danger2: #e83e38;
+  --color-danger2b: #e83e3888;
+  --color-danger2c: #e83e3833;
 }

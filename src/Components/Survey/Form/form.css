@@ -1,0 +1,46 @@
+.form-control {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  gap: 0.6rem;
+}
+
+.form .section p {
+  margin: 0.5rem 0;
+}
+
+.form-control button {
+  all: unset;
+  text-align: center;
+  height: 2.5rem;
+  flex: 1;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.form-control .submit {
+  color: white;
+  background-color: var(--color-primary2);
+  border: 2px solid var(--color-primary2);
+}
+.form-control .clear-form {
+  color: var(--color-primary2);
+  border: 2px solid var(--color-primary2);
+  transition: background 200ms ease;
+}
+
+.form-control .submit:hover {
+  filter: brightness(85%);
+}
+
+.form-control .clear-form:hover {
+  background-color: var(--color-primary4c);
+}
+.form-control .submit:active,
+.form-control .clear-form:active {
+  transform: scale(0.98);
+}
+
+.form .form-warning {
+  color: var(--color-danger2);
+}
