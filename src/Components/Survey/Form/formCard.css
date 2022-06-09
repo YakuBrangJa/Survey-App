@@ -10,12 +10,16 @@
   background-color: white;
 }
 .card-header {
-  padding: 1rem 1rem 0.9rem 1rem;
+  padding: 0.7rem 1rem 0.7rem 1rem;
   display: flex;
   gap: 0.3rem;
   font-size: 1.15rem;
   border-bottom: 1px solid #bbbbbb;
   transition: background 150ms linear;
+}
+
+.card-header legend {
+  line-height: 1.6rem;
 }
 
 .form-card.checked .card-header {
@@ -58,4 +62,7 @@
   .options .option-item {
     padding: 0.6rem 1rem;
   }
+  /* .card-header legend {
+    line-height: 1.6rem;
+  } */
 }

@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "./admin.css";
+import { Routes, Route, Navigate } from "react-router-dom";
 
+// COMPONENTS
+import NavBar from "./NavBar/NavBar";
+import Sidebar from "./Sidebar/Sidebar";
+import Table from "./Table/Table";
+import Analyse from "./Analyse/Analyse";
+import Summary from "./Summary/Summary";
+
+// HOOKS
 import useHttps from "../../hooks/useHttps";
 
 function Admin() {
@@ -8,54 +17,38 @@ function Admin() {
 
   const { isLoading, error, sendRequest } = useHttps();
 
+  const firebaseDB =
+    "https://netflix-clone-8ede8-default-rtdb.firebaseio.com/thesis-survey.json";
+
   useEffect(() => {
     sendRequest(
       {
-        url: `https://netflix-clone-8ede8-default-rtdb.firebaseio.com/thesis-survey.json`,
+        url: firebaseDB,
         method: "GET",
       },
       setSurveyData
     );
   }, [sendRequest]);
 
-  console.log(surveyData);
-
   if (isLoading) return <h1>Loading...</h1>;
 
   return (
     <div className="admin">
-      <header>
-        <h3>Survey Data</h3>
-      </header>
-      <table className="data-table">
-        <thead>
-          <tr>
-            <th>Submit Info</th>
-            {surveyData &&
-              Object.values(Object.values(surveyData)[0].formData).map(
-                (values) => <th>{values.name}</th>
-              )}
-          </tr>
-        </thead>
-        <tbody>
-          {surveyData &&
-            Object.values(surveyData).map((value) => (
-              <>
-                <tr>
-                  <td className="first-column">{value.submitID}</td>
-                  {Object.values(value.formData).map((item) => (
-                    <td rowSpan={2} key={item.name}>
-                      {item.value.split("(")[0]}
-                    </td>
-                  ))}
-                </tr>
-                <tr>
-                  <td className="first-column">{value.date}</td>
-                </tr>
-              </>
-            ))}
-        </tbody>
-      </table>
+      <Sidebar />
+      <main>
+        <Routes>
+          <Route
+            path={"summary"}
+            element={<Summary surveyData={surveyData} />}
+          />
+          <Route path={"table"} element={<Table surveyData={surveyData} />} />
+          <Route
+            path={"analyse"}
+            element={<Analyse surveyData={surveyData} />}
+          />
+          <Route path="/" element={<Navigate to="summary" replace />} />
+        </Routes>
+      </main>
     </div>
   );
 }

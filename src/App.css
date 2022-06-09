@@ -1,9 +1,13 @@
 .app {
-  width: 100vw;
-  min-height: 100vh;
   background-color: var(--bg1);
-  overflow-x: scroll;
-  overflow-x: overlay;
+  /* width: 100%; */
+  /* width: 100vw; */
+  /* height: 100vh; */
+  /* max-height: 100%; */
+  /* overflow-x: hidden; */
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
   /* padding: 1rem; */
 }
 
@@ -21,6 +25,6 @@
 
 @media (max-width: 576px) {
   .container {
-    width: 98.5%;
+    width: 91%;
   }
 }

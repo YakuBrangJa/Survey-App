@@ -1,3 +1,6 @@
+.form {
+  margin-top: 1.5rem;
+}
 .form-control {
   margin-top: 1rem;
   display: flex;
@@ -5,8 +8,14 @@
   gap: 0.6rem;
 }
 
+.form .section h4 {
+  margin: 0.7rem 0;
+}
+
 .form .section p {
   margin: 0.5rem 0;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .form-control button {
@@ -23,6 +32,12 @@
   background-color: var(--color-primary2);
   border: 2px solid var(--color-primary2);
 }
+.form-control .submit.submitting {
+  cursor: default;
+  background-color: #aaa;
+  border-color: #aaa;
+}
+
 .form-control .clear-form {
   color: var(--color-primary2);
   border: 2px solid var(--color-primary2);

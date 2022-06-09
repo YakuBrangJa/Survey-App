@@ -1,28 +1,32 @@
 .header {
-  margin: 1rem 0 2rem 0;
+  padding: 2rem 0 1rem 0;
+  /* background-color: var(--color-primary3); */
 }
 
 .header h1 {
   text-align: center;
   font-size: 1.7rem;
-}
-.header h2 {
-  text-align: center;
+  /* color: white; */
 }
 .header p {
-  margin-top: 1.5rem;
-  color: #333;
-  /* text-align: center; */
+  /* margin-top: 1.5rem; */
+  padding: 1.5rem 0;
+  /* color: #eeeeee; */
+  text-align: justify;
+  text-justify: inter-word;
+  font-size: 1.1rem;
 }
 
 @media (max-width: 576px) {
   .header h1 {
     font-size: 1.3rem;
+    width: 96%;
   }
   .header h2 {
     font-size: 1.3rem;
     text-align: center;
   }
+
   .header .break {
     display: none;
   }

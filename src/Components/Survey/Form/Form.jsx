@@ -9,13 +9,14 @@ import FormCard from "./FormCard";
 import useHttps from "../../../hooks/useHttps";
 import useFormDateFormat from "../../../hooks/useFormDateFormat";
 
-function Form({ submitID }) {
+function Form({ submitID, setSubmitSuccess, setLoadingStatus }) {
   const cardContentList = useSelector((state) => state.formCardContent);
 
   const [inputValue, setInputValue] = React.useState({});
   const [formData, setFormData] = useState({});
   const [allChecked, setAllChecked] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  // const [submitSuccess, setSubmitSuccess] = useState(false);
 
   const initialInputValue = useCallback(() => {
     for (const key in cardContentList) {
@@ -41,7 +42,7 @@ function Form({ submitID }) {
     });
   };
 
-  const { sendRequest } = useHttps();
+  const { isLoading, error, sendRequest } = useHttps();
   const { date, time } = useFormDateFormat();
 
   const submitHandler = (e) => {
@@ -57,9 +58,18 @@ function Form({ submitID }) {
       method: "PUT",
       body: { formData: { ...formData }, date, submitID },
     });
-    setSubmitted(false);
-    setAllChecked(false);
+
+    setSubmitSuccess(true);
   };
+
+  useEffect(() => {
+    if (!submitted) return;
+    setLoadingStatus(isLoading);
+    if (!isLoading && allChecked) {
+      setSubmitted(false);
+      setAllChecked(false);
+    }
+  }, [isLoading, submitted]);
 
   const clearFormHandler = () => {
     initialInputValue();
@@ -76,7 +86,6 @@ function Form({ submitID }) {
   }, [inputValue]);
 
   const formIsInValid = submitted && !allChecked;
-  console.log(formIsInValid, submitted, allChecked);
 
   return (
     <form className="form container" onSubmit={submitHandler}>
@@ -102,11 +111,15 @@ function Form({ submitID }) {
       ))}
 
       {formIsInValid && (
-        <p className="form-warning">All survey questions must be answered</p>
+        <p className="form-warning">All questions must be answered</p>
       )}
       <div className="form-control">
-        <button type="submit" className="submit">
-          SUBMIT
+        <button
+          type="submit"
+          className={`submit ${isLoading && "submitting"}`}
+          disabled={isLoading}
+        >
+          {!isLoading ? "SUBMIT" : "SUBMITTING..."}
         </button>
         <button type="button" className="clear-form" onClick={clearFormHandler}>
           CLEAR FORM

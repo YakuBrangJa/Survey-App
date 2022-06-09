@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import "./App.css";
 import { Route, Routes, Navigate } from "react-router-dom";
 
@@ -15,7 +15,7 @@ function App() {
       <Routes>
         <Route path="/">
           <Route path="survey" element={<Survey submitID={submitID} />} />
-          <Route path="admin" element={<Admin />} />
+          <Route path="admin/*" element={<Admin />} />
           <Route path="/" element={<Navigate to="survey" replace />} />
         </Route>
       </Routes>

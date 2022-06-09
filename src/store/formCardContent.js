@@ -9,9 +9,11 @@ const opinions = [
 ];
 
 const initialState = {
-  section1: {
-    title: "Section - A: Respondent's Background Information",
+  sectionA: {
+    title:
+      "Section-A: Respondent's Background Information (ဖြေဆိုသူ၏ အချက်အလက်)",
     instruction: "",
+    group: "Respondent's Background Information",
     content: [
       {
         index: 1,
@@ -65,7 +67,7 @@ const initialState = {
       },
       {
         index: 5,
-        name: "Income",
+        name: "Income (MMK)",
         legend: {
           en: "What is your monthly income (MMK)?",
           mm: "လစဉ်ဝင်ငွေပမာဏ",
@@ -83,7 +85,7 @@ const initialState = {
         index: 6,
         name: "Department",
         legend: {
-          en: "Which department are you working in Metta?",
+          en: "Which department are you working in?",
           mm: "လက်ရှိအလုပ်လုပ်နေသည့်ဌာန",
         },
         options: [
@@ -95,7 +97,7 @@ const initialState = {
       },
       {
         index: 7,
-        name: "Year",
+        name: "Work Year",
         legend: {
           en: "How long you have been working in Metta?",
           mm: "လုပ်သက်",
@@ -111,11 +113,12 @@ const initialState = {
     ],
   },
 
-  // SECTION B SART
-  section2: {
-    title: "Section - B: Leadership Styles",
+  // SECTION B
+  sectionB: {
+    title: "Section-B: Leadership Styles",
     instruction:
       "Please indicate how or the way that your supervisor/manager/leader engages in the described behaviors listed below and select to what extent do you agree or disagree by selecting the answer you chose",
+    group: "Leadership Styles",
     content: [
       {
         index: 8,
@@ -139,16 +142,17 @@ const initialState = {
   },
 
   // SECTION C
-  section3: {
-    title: "Section - C: Employee Performance",
+  sectionC: {
+    title: "Section-C: Employee Performance",
     instruction:
       "You are requested to rate yourself against each statement to indicate yourself assesment of your own performance",
+    group: "Employee Performance",
     content: [
       {
         index: 10,
         name: "index10",
         legend: {
-          en: "I clearly understand the vision, mission and objectives of the organization",
+          en: "I clearly understand the vision, mission and objectives of the organisation",
           mm: null,
         },
         options: opinions,

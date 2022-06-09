@@ -1,0 +1,49 @@
+.success-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.submit-success {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; */
+}
+
+.success-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* height: 13rem; */
+  padding: 2rem 0.5rem;
+  background-color: var(--color-success3);
+}
+
+.success-header .icon {
+  font-size: 7rem;
+  color: white;
+}
+.success-header p {
+  color: white;
+  margin-top: 1rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.success-message {
+  padding: 1.5rem 0.5rem;
+}
+
+.success-message {
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-align: center;
+  color: var(--color-primary1b);
+}
