@@ -1,16 +1,183 @@
 :root {
-  --card-shaow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+  --card-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
     0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+  --card-bg: #fcfcfc;
 }
 
 section.Summary {
   background-color: rgba(240, 240, 240);
+  padding: 1rem;
 }
 
 .summary-container {
   width: 100%;
   max-width: 75rem;
-  height: 100%;
+  /* height: 100%; */
   margin: auto;
   /* background-color: var(--purple-theme); */
+}
+
+.shadow {
+  box-shadow: var(--card-shadow);
+  background-color: var(--card-bg);
+}
+
+.summary-header {
+  display: flex;
+  /* margin-top: 1.5rem; */
+  /* border: 1px solid grey; */
+}
+
+.summary-header div {
+  flex: 1;
+  text-align: center;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  border-right: 0.5px solid #aaaaaaaa;
+  transition: all 200ms ease;
+  color: #444444;
+}
+
+.summary-header div:hover {
+  background-color: #e8e8e8;
+}
+.summary-header div.active {
+  background-color: var(--purple-contrast1);
+  color: white;
+}
+
+.summary-header div.active:hover {
+  background-color: var(--purple-contrast1);
+}
+
+.summary-header div span {
+  display: block;
+  padding: 0.3rem 0;
+  font-weight: 600;
+}
+
+.summary-header div:not(:last-child) span {
+  /* border-right: 0.5px solid #aaaaaaaa; */
+}
+
+/* SUMMARY VIZ */
+.summary-viz {
+  margin-top: 2rem;
+  display: grid;
+  /* grid-template-columns: 1fr 1fr; */
+  grid-template-columns: calc(67% - 1rem) calc(33% - 1rem);
+  height: 30rem;
+  gap: 2rem;
+}
+
+.summary-viz .summary-chart {
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.2rem;
+}
+.summary-chart .chart-header {
+  height: 3rem;
+  border-bottom: 1px solid #bbbbbbaa;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5rem;
+}
+
+.chart-title {
+  font-size: 1.1rem;
+  color: #555555;
+}
+
+.chart-header .chart-control {
+  display: flex;
+  align-items: center;
+  gap: 1.7rem;
+  color: #555555;
+}
+
+.chart-control .icon {
+  font-size: 1.15rem;
+}
+
+.chart-sort {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+  cursor: pointer;
+}
+.chart-sort:hover {
+  color: var(--purple-theme);
+}
+.chart-sort span {
+  line-height: 0.7rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.chart-download {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.chart-download:hover .icon {
+  color: var(--purple-theme);
+}
+
+.summary-viz .summary-dataList {
+  background-color: var(--purple-theme);
+  border-radius: 0.2rem;
+}
+
+.chart-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.chart-section .chart-select {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  height: 4rem;
+  border-top: 1px solid #bbbbbbaa;
+  /* width: 5rem; */
+}
+.chart-select > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  color: #555555;
+  transition: all 200ms ease;
+  cursor: pointer;
+  border-bottom: 0.2rem solid var(--card-bg);
+  padding-top: 0.2rem;
+}
+
+.chart-select > div:hover {
+  background-color: #dddddd;
+  border-bottom: 0.2rem solid #dddddd;
+}
+
+.chart-select > div.active {
+  color: var(--purple-theme);
+  border-color: var(--purple-theme);
+  background-color: #ddddddee;
+  background-color: var(--purple-3b);
+}
+
+.chart-select > div span {
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+.chart-select .icon {
+  font-size: 1.5rem;
+}
+
+.chart-section .chart {
+  flex: 1;
+  padding: 1rem 2rem 0.5rem 1.5rem;
+  /* background-color: #555555; */
 }

@@ -13,7 +13,7 @@ import Summary from "./Summary/Summary";
 import useHttps from "../../hooks/useHttps";
 
 function Admin() {
-  const [surveyData, setSurveyData] = useState();
+  const [surveyData, setSurveyData] = useState({});
 
   const { isLoading, error, sendRequest } = useHttps();
 
@@ -30,6 +30,8 @@ function Admin() {
     );
   }, [sendRequest]);
 
+  const surveyDataArray = Object.values(surveyData);
+
   if (isLoading) return <h1>Loading...</h1>;
 
   return (
@@ -39,12 +41,15 @@ function Admin() {
         <Routes>
           <Route
             path={"summary"}
-            element={<Summary surveyData={surveyData} />}
+            element={<Summary surveyData={surveyDataArray} />}
           />
-          <Route path={"table"} element={<Table surveyData={surveyData} />} />
+          <Route
+            path={"table"}
+            element={<Table surveyData={surveyDataArray} />}
+          />
           <Route
             path={"analyse"}
-            element={<Analyse surveyData={surveyData} />}
+            element={<Analyse surveyData={surveyDataArray} />}
           />
           <Route path="/" element={<Navigate to="summary" replace />} />
         </Routes>

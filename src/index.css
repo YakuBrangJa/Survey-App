@@ -4,10 +4,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* outline: 1px solid violet; */
   /* font-family: "Montserrat", sans-serif; */
   /* font-family: "Poppins", sans-serif; */
   /* font-family: "Nunito", sans-serif; */
+
+  /* outline: 1px solid violet; */
 }
 
 body {
@@ -72,4 +73,8 @@ code {
   --purple-1: #ac9fef;
   --purple-2: #b5aaef;
   --purple-3: #c2bae9;
+  --purple-3b: #c2bae966;
+
+  --test: rgba(151, 235, 54, 0.8);
+  --test: rgba(102, 255, 122, 0.8);
 }
