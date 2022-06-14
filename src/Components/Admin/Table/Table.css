@@ -115,6 +115,7 @@ table.data-table::before {
   white-space: nowrap;
   border-bottom: 0.5px solid var(--table-border);
   border-right: 0.5px solid var(--table-border);
+  font-size: 0.9rem;
   /* color: #104d34; */
 }
 

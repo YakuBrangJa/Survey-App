@@ -3,10 +3,14 @@
 }
 
 .admin main {
-  width: calc(100vw - var(--sidebar-width));
+  width: calc(100vw - var(--sidebar-collapse-width));
   display: flex;
   flex-direction: column;
   margin-left: auto;
+  transition: all 250ms ease;
+}
+.admin.collapse main {
+  width: calc(100vw - var(--sidebar-width));
 }
 
 .admin section {

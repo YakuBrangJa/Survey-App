@@ -12,15 +12,15 @@ import { IoIosArrowForward } from "react-icons/io";
 // CUSTOM HOOKS
 import useOnClickOutside from "../../../hooks/useOnClickOutside";
 
-function Sidebar() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+function Sidebar({ sidebarOpen, setSidebarOpen }) {
   const sidebarRef = useRef();
 
   const sidebarToggleHandler = () => {
     setSidebarOpen((prevSidebarOpen) => !prevSidebarOpen);
   };
 
-  useOnClickOutside(sidebarRef, () => setSidebarOpen(false), sidebarOpen);
+  // CLOSE SIDEBAR ON CLICKED OUTSIDE
+  // useOnClickOutside(sidebarRef, () => setSidebarOpen(false), sidebarOpen);
 
   const selectedTab = ({ isActive }) => {
     return {
@@ -45,7 +45,7 @@ function Sidebar() {
         <li>
           <NavLink to="/admin/summary" style={selectedTab}>
             <BsFillGrid1X2Fill className="icon" />
-            <span>Respondents Summary</span>
+            <span>Respondent Summary</span>
           </NavLink>
         </li>
         <li>
@@ -64,7 +64,7 @@ function Sidebar() {
       <div className="sidebar-bottom">
         <div className="sidebar-toggle" onClick={sidebarToggleHandler}>
           <IoIosArrowForward className="icon" />
-          <span>Close</span>
+          <span>Hide</span>
         </div>
       </div>
     </nav>

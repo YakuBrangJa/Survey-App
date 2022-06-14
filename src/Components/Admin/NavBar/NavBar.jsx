@@ -1,14 +1,18 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./NavBar.css";
-import { NavLink } from "react-router-dom";
+
+// STATE
+import { uiStateActions } from "../../../store/ui-state";
 
 // ICONS
 
-import { FaTable } from "react-icons/fa";
-import { BsBarChartLineFill } from "react-icons/bs";
-import { BsBarChartLine } from "react-icons/bs";
-
 function NavBar({ title, children }) {
+  const dispatch = useDispatch();
+  const isLoading = useSelector((state) => state.uiState.isLoading);
+
+  const updateHandler = () => dispatch(uiStateActions.setIsUpdating(true));
+
   return (
     <nav className="admin-nav">
       <div className="nav-left">
@@ -16,7 +20,9 @@ function NavBar({ title, children }) {
       </div>
       <div className="nav-right">
         <ul>{children}</ul>
-        <button>Update</button>
+        <button onClick={updateHandler} disabled={isLoading}>
+          Update
+        </button>
       </div>
     </nav>
   );

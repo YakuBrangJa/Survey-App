@@ -17,8 +17,22 @@ function Header() {
         order to collect representative and meaningful data, I would like to
         request you to fill below questionnaires. The information you provide
         will be used only for this study purpose and kept confidential. In case
-        of clarification, pleace contact me at <span>09400040511</span>. Thank
+        of clarification, please contact me at <span>09400040511</span>. Thank
         you in advance and your co-operation will be highly appreciated.
+      </p>
+      <p className="container info-mm">
+        ကျွန်တော် ဒိန်ရိန်နော်ဂျာသည် ပြင်သစ်နိုင်ငံအသိအမှတ်ပြု European
+        International University (EIU) နှင့်အကျိုးတူပူပေါင်းဖွင့်လှစ်ထားသော
+        Ayeyarwaddy Business School တွင် Master of Business Administration (MBA)
+        မဟာဘွဲ့အတွက် သုတေသနတစ်ခုပြုလုပ်လျှက်ရှိပါသည်။ သုတေသနခေါင်းစဉ်သည် “The
+        Effect of Leadership Styles on Employee Performance: A Case Study of a
+        NGO in Myanmar” ဖြစ်ပါသည်။ သုတေသနအတွက် မှန်ကန်တိကျသော
+        သတင်းအချက်အလက်များရယူနိုင်ရန် အောက်ပါမေးခွန်းများကို
+        ဖြေဆိုပေးပါရန်အကူအညီတောင်းဆိုလိုပါသည်။ လူကြီးမင်းမှ ရရှိလာသော
+        သတင်းအချက်အလက်များကို ဤသုတေသနအတွက်သာ အသုံးပြုသွားမည်ဖြစ်ပြီး
+        လုံခြုံစိတ်ချစွာ ထိန်းသိမ်းထားမည် ဖြစ်ပါကြောင်း အာမခံပါသည်။ လိုအပ်ပါက
+        09400040511 သို့ဆက်သွယ်မေးမြန်းနိုင်ပါသည်။ အားလုံးကို
+        အထူးကျေးဇူးတင်ရှိပါသည်။
       </p>
     </header>
   );

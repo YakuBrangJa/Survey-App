@@ -11,33 +11,52 @@ function Summary({ surveyData }) {
   const [activeTab, setActiveTab] = useState("Gender");
   const formContents = useSelector((state) => state.formCardContent);
 
-  const tabSelectHandler = (index) => {
-    setActiveTab(index);
-  };
-
-  const [respondentData, setRespondentData] = useState();
+  const [respondentData, setRespondentData] = useState({});
 
   useEffect(() => {
     const reducedData = surveyData.reduce((acc, value) => {
-      // let acc = acc;
-
       value.formData.forEach((item, i) => {
         if (!acc[item.name]) acc[item.name] = {};
-        if (!acc[item.name][item.value]) acc[item.name][item.value] = 0;
+        if (!acc[item.name].index) acc[item.name].index = i + 1;
+        if (!acc[item.name].value) acc[item.name].value = {};
+        if (!acc[item.name].value[item.value])
+          acc[item.name].value[item.value] = 0;
         acc = {
           ...acc,
           [item.name]: {
             ...acc[item.name],
-            [item.value]: (acc[item.name][item.value] || 0) + 1,
+            value: {
+              ...acc[item.name].value,
+              [item.value]: (acc[item.name].value[item.value] || 0) + 1,
+            },
           },
         };
       });
-
       return acc;
     }, {});
 
     setRespondentData(reducedData);
   }, [surveyData]);
+
+  const selectedData = respondentData && respondentData[activeTab];
+  const matchedFormContent =
+    selectedData &&
+    formContents.sectionA.content
+      .filter((item) => item.index === selectedData.index)
+      .pop();
+
+  const tabSelectHandler = (index) => {
+    setActiveTab(index);
+  };
+
+  const selectedDataKeys = selectedData ? Object.keys(selectedData.value) : [];
+
+  selectedDataKeys.length !== 0 &&
+    selectedDataKeys.sort(
+      (a, b) =>
+        matchedFormContent.options.indexOf(a) -
+        matchedFormContent.options.indexOf(b)
+    );
 
   return (
     <>
@@ -57,10 +76,16 @@ function Summary({ surveyData }) {
           </div>
           <div className="summary-viz">
             <SummaryChart
-              respondentData={respondentData}
+              selectedData={selectedData}
+              selectedDataKeys={selectedDataKeys}
               activeTab={activeTab}
             />
-            <SummaryTable />
+            <SummaryTable
+              surveyData={surveyData}
+              selectedData={selectedData}
+              selectedDataKeys={selectedDataKeys}
+              activeTab={activeTab}
+            />
           </div>
         </div>
       </section>

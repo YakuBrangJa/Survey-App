@@ -53,7 +53,8 @@ code {
 
   /* LENGTH */
   --nav-height: 3.5rem;
-  --sidebar-width: 2.7rem;
+  --sidebar-width: 16rem;
+  --sidebar-collapse-width: 2.7rem;
 
   /* GREY THEME */
   --grey-theme: #555555;
@@ -75,6 +76,5 @@ code {
   --purple-3: #c2bae9;
   --purple-3b: #c2bae966;
 
-  --test: rgba(151, 235, 54, 0.8);
   --test: rgba(102, 255, 122, 0.8);
 }

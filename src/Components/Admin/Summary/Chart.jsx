@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, forwardRef, useRef } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -30,8 +30,31 @@ const backgroundColor = [
   "rgba(102, 255, 122, 0.8)",
 ];
 
-function Chart({ selectedData, chartType }) {
-  const selectedDataKeys = selectedData ? Object.keys(selectedData) : [];
+const Chart = ({
+  selectedData,
+  selectedDataKeys,
+  chartType,
+  sorted,
+  setChartRef,
+}) => {
+  const chartRef = useRef();
+
+  useEffect(() => {
+    setChartRef(chartRef);
+  }, [chartRef]);
+
+  const [sortedDataKeys, setSortedDataKeys] = useState();
+
+  useEffect(() => {
+    setSortedDataKeys(
+      selectedDataKeys.length !== 0 &&
+        selectedDataKeys
+          .slice()
+          .sort((a, b) => selectedData.value[a] - selectedData.value[b])
+    );
+  }, [selectedDataKeys]);
+
+  const dataKey = sorted ? sortedDataKeys : selectedDataKeys;
 
   // OPTION STRUCTURE
   const barOptions = {
@@ -57,6 +80,7 @@ function Chart({ selectedData, chartType }) {
       legend: {
         position: "right",
         align: "center",
+        maxWidth: 300,
       },
       title: {
         display: false,
@@ -85,24 +109,26 @@ function Chart({ selectedData, chartType }) {
 
   // DATA STRUCTURE
   const barStructure = {
-    labels: ["Gender"],
-    datasets: selectedDataKeys.map((key, i) => {
+    labels: [""],
+    datasets: dataKey.map((key, i) => {
       return {
         label: key,
-        data: [selectedData[key]],
+        data: [selectedData.value[key]],
         backgroundColor: backgroundColor[i],
+        // barThickness: 170,
       };
     }),
   };
 
   const pieStructure = {
-    labels: selectedDataKeys,
+    labels: dataKey,
     datasets: [
       {
         labels: ["pie"],
-        data: selectedDataKeys.map((key) => selectedData[key]),
+        data: dataKey.map((key) => selectedData.value[key]),
         backgroundColor: backgroundColor,
-        borderWidth: 3,
+        borderWidth: 2,
+        // borderColor: backgroundColor,
       },
     ],
   };
@@ -112,14 +138,33 @@ function Chart({ selectedData, chartType }) {
   // CHART TYPE
   let chart;
 
-  if (chartType === "bar") chart = <Bar options={barOptions} data={data} />;
+  if (chartType === "bar")
+    chart = (
+      <Bar
+        options={barOptions}
+        data={data}
+        ref={chartType === "bar" && chartRef}
+      />
+    );
 
-  if (chartType === "pie") chart = <Pie options={pieOptions} data={data} />;
+  if (chartType === "pie")
+    chart = (
+      <Pie
+        options={pieOptions}
+        data={data}
+        ref={chartType === "pie" && chartRef}
+      />
+    );
 
   if (chartType === "doughnut")
-    chart = <Doughnut options={pieOptions} data={data} />;
+    chart = (
+      <Doughnut
+        options={pieOptions}
+        data={data}
+        ref={chartType === "doughnut" && chartRef}
+      />
+    );
 
   return chart;
-}
-
+};
 export default Chart;
