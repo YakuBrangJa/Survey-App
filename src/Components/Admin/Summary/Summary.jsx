@@ -7,44 +7,16 @@ import NavBar from "../NavBar/NavBar";
 import SummaryChart from "./SummaryChart";
 import SummaryTable from "./SummaryTable";
 
-function Summary({ surveyData }) {
+function Summary({ surveyData, reducedSurveyData }) {
   const [activeTab, setActiveTab] = useState("Gender");
   const formContents = useSelector((state) => state.formCardContent);
 
-  const [respondentData, setRespondentData] = useState({});
-
-  useEffect(() => {
-    const reducedData = surveyData.reduce((acc, value) => {
-      value.formData.forEach((item, i) => {
-        if (!acc[item.name]) acc[item.name] = {};
-        if (!acc[item.name].index) acc[item.name].index = i + 1;
-        if (!acc[item.name].value) acc[item.name].value = {};
-        if (!acc[item.name].value[item.value])
-          acc[item.name].value[item.value] = 0;
-        acc = {
-          ...acc,
-          [item.name]: {
-            ...acc[item.name],
-            value: {
-              ...acc[item.name].value,
-              [item.value]: (acc[item.name].value[item.value] || 0) + 1,
-            },
-          },
-        };
-      });
-      return acc;
-    }, {});
-
-    setRespondentData(reducedData);
-  }, [surveyData]);
-
-  const selectedData = respondentData && respondentData[activeTab];
+  const selectedData = reducedSurveyData && reducedSurveyData[activeTab];
   const matchedFormContent =
     selectedData &&
-    formContents.sectionA.content
-      .filter((item) => item.index === selectedData.index)
-      .pop();
-
+    formContents.sectionA.content.find(
+      (item) => item.index === selectedData.index
+    );
   const tabSelectHandler = (index) => {
     setActiveTab(index);
   };

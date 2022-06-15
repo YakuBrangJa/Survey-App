@@ -25,7 +25,34 @@ function Admin() {
   const dispatch = useDispatch();
   const { isUpdating } = useSelector((state) => state.uiState);
   const [surveyData, setSurveyData] = useState({});
-  const surveyDataArray = Object.values(surveyData);
+  const surveyDataArray = useCallback(Object.values(surveyData), [surveyData]);
+
+  const [reducedSurveyData, setReducedSurveyData] = useState({});
+
+  useEffect(() => {
+    const reducedData = surveyDataArray.reduce((acc, value) => {
+      value.formData.forEach((item, i) => {
+        if (!acc[item.name]) acc[item.name] = {};
+        if (!acc[item.name].index) acc[item.name].index = i + 1;
+        if (!acc[item.name].value) acc[item.name].value = {};
+        if (!acc[item.name].value[item.value])
+          acc[item.name].value[item.value] = 0;
+        acc = {
+          ...acc,
+          [item.name]: {
+            ...acc[item.name],
+            value: {
+              ...acc[item.name].value,
+              [item.value]: (acc[item.name].value[item.value] || 0) + 1,
+            },
+          },
+        };
+      });
+      return acc;
+    }, {});
+
+    setReducedSurveyData(reducedData);
+  }, [surveyDataArray]);
 
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
@@ -60,7 +87,12 @@ function Admin() {
         <Routes>
           <Route
             path={"summary"}
-            element={<Summary surveyData={surveyDataArray} />}
+            element={
+              <Summary
+                surveyData={surveyDataArray}
+                reducedSurveyData={reducedSurveyData}
+              />
+            }
           />
           <Route
             path={"table"}
@@ -68,7 +100,12 @@ function Admin() {
           />
           <Route
             path={"analyse"}
-            element={<Analyse surveyData={surveyDataArray} />}
+            element={
+              <Analyse
+                surveyData={surveyDataArray}
+                reducedSurveyData={reducedSurveyData}
+              />
+            }
           />
           <Route path="/" element={<Navigate to="summary" replace />} />
         </Routes>
