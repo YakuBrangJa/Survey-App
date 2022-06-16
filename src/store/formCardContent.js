@@ -73,10 +73,10 @@ const initialState = {
           mm: null,
         },
         options: [
-          "Government Staff",
           "Company staff",
           "Business Owner",
           "Dependent",
+          "Freelancer",
           "Others",
         ],
       },
@@ -107,7 +107,7 @@ const initialState = {
     group: "Respondent's opinion",
     content: [
       {
-        index: 8,
+        index: 7,
         name: "index8",
         legend: {
           en: "The food products can get anytime 24 hrs. a day at the online shopping.",
@@ -116,7 +116,7 @@ const initialState = {
         options: opinions,
       },
       {
-        index: 9,
+        index: 8,
         name: "index9",
         legend: {
           en: "I save a lot of time by shopping food products on the Internet.",
@@ -125,7 +125,7 @@ const initialState = {
         options: opinions,
       },
       {
-        index: 10,
+        index: 9,
         name: "index10",
         legend: {
           en: "There are variety of food on the online shopping.",
@@ -134,7 +134,7 @@ const initialState = {
         options: opinions,
       },
       {
-        index: 11,
+        index: 10,
         name: "index11",
         legend: {
           en: "I can save money by comparing the prices offered at different shops for purchasing food.",
@@ -143,7 +143,7 @@ const initialState = {
         options: opinions,
       },
       {
-        index: 12,
+        index: 11,
         name: "index12",
         legend: {
           en: "I worry to buy food online because of a lack of the ability to check physical objects and taste.",
@@ -152,7 +152,7 @@ const initialState = {
         options: opinions,
       },
       {
-        index: 13,
+        index: 12,
         name: "index13",
         legend: {
           en: "I can only see the limited knowledge of the foods posted by online shops.",
@@ -161,7 +161,7 @@ const initialState = {
         options: opinions,
       },
       {
-        index: 14,
+        index: 13,
         name: "index14",
         legend: {
           en: "I worry about being cheated and losing money through online shopping.",
@@ -170,7 +170,7 @@ const initialState = {
         options: opinions,
       },
       {
-        index: 15,
+        index: 14,
         name: "index15",
         legend: {
           en: "I worry about the waste of time if products break or fail after a few days and need replacement.",
@@ -179,7 +179,7 @@ const initialState = {
         options: opinions,
       },
       {
-        index: 16,
+        index: 15,
         name: "index16",
         legend: {
           en: "I worry about the close expiry date being delivered when I order food online.",
@@ -189,7 +189,7 @@ const initialState = {
       },
       {
         index: 16,
-        name: "index16",
+        name: "index17",
         legend: {
           en: "It is easy to purchase food products via the mobile application.",
           mm: null,

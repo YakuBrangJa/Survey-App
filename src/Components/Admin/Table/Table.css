@@ -41,7 +41,7 @@
   overflow: scroll;
   overflow: overlay;
   height: 100%;
-  padding: 0 0.5rem 1.5rem 0;
+  padding: 0 0rem 1.5rem 0;
   position: relative;
   border-left: 1px solid #cccccc;
   border-right: 1px solid #cccccc;
@@ -49,15 +49,15 @@
 }
 
 .table-container::-webkit-scrollbar {
-  width: 0.8rem;
-  height: 0.8rem;
+  width: 0.9rem;
+  height: 0.9rem;
 }
 
 .table-container::-webkit-scrollbar-thumb {
-  background-color: #9995;
+  background-color: #9999;
 }
 .table-container::-webkit-scrollbar-thumb:hover {
-  background-color: #999b;
+  background-color: #999e;
 }
 .table-container::-webkit-scrollbar-track {
   background-color: #dddddd;
@@ -117,6 +117,10 @@ table.data-table::before {
   border-right: 0.5px solid var(--table-border);
   font-size: 0.9rem;
   /* color: #104d34; */
+}
+
+.data-table td:last-child {
+  padding-right: 2rem;
 }
 
 .data-table .first-column {
@@ -180,8 +184,7 @@ table.data-table::before {
 }
 
 .data-table thead tr:nth-child(2) th:hover {
-  background-color: #39c68d;
-  background-color: #aaaaaa;
+  background-color: var(--purple-3);
 }
 
 .data-table tbody tr:hover,

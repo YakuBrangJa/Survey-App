@@ -11,7 +11,7 @@ function Table({ surveyData }) {
   console.log(isLoading);
   return (
     <>
-      <NavBar title={"Survey Data Table"}>
+      <NavBar title={"Data Table"}>
         <li className="bold">
           <span>Filter Overview</span>
         </li>

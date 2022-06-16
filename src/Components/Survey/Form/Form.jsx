@@ -71,6 +71,8 @@ function Form({ submitID, setSubmitSuccess, setLoadingStatus }) {
     }
   }, [isLoading, submitted]);
 
+  console.log(isLoading);
+
   const clearFormHandler = () => {
     initialInputValue();
     setSubmitted(false);
@@ -81,7 +83,12 @@ function Form({ submitID, setSubmitSuccess, setLoadingStatus }) {
     const inputValueArr = Object.values(inputValue);
     const uncheckedCard = inputValueArr.filter((item) => item.value === "");
 
-    if (uncheckedCard.length === 0 && inputValueArr.length === 11)
+    if (
+      uncheckedCard.length === 0 &&
+      inputValueArr.length ===
+        cardContentList.sectionA.content.length +
+          cardContentList.sectionB.content.length
+    )
       setAllChecked(true);
   }, [inputValue]);
 

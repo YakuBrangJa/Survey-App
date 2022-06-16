@@ -27,33 +27,6 @@ function Admin() {
   const [surveyData, setSurveyData] = useState({});
   const surveyDataArray = useCallback(Object.values(surveyData), [surveyData]);
 
-  const [reducedSurveyData, setReducedSurveyData] = useState({});
-
-  useEffect(() => {
-    const reducedData = surveyDataArray.reduce((acc, value) => {
-      value.formData.forEach((item, i) => {
-        if (!acc[item.name]) acc[item.name] = {};
-        if (!acc[item.name].index) acc[item.name].index = i + 1;
-        if (!acc[item.name].value) acc[item.name].value = {};
-        if (!acc[item.name].value[item.value])
-          acc[item.name].value[item.value] = 0;
-        acc = {
-          ...acc,
-          [item.name]: {
-            ...acc[item.name],
-            value: {
-              ...acc[item.name].value,
-              [item.value]: (acc[item.name].value[item.value] || 0) + 1,
-            },
-          },
-        };
-      });
-      return acc;
-    }, {});
-
-    setReducedSurveyData(reducedData);
-  }, [surveyDataArray]);
-
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const { isLoading, error, sendRequest } = useHttps();
@@ -66,7 +39,7 @@ function Admin() {
       },
       setSurveyData
     );
-  }, []);
+  }, [sendRequest]);
 
   useEffect(() => {
     if (!isUpdating) return;
@@ -74,11 +47,43 @@ function Admin() {
     fetchHandler();
 
     dispatch(uiStateActions.setIsUpdating(false));
-  }, [sendRequest, fetchHandler, isUpdating]);
+  }, [fetchHandler, isUpdating]);
 
   useEffect(() => {
     dispatch(uiStateActions.setIsLoading(isLoading));
   }, [isLoading]);
+
+  const [reducedSurveyData, setReducedSurveyData] = useState({});
+
+  console.log(surveyData);
+  // console.log(surveyDataArray);
+
+  useEffect(() => {
+    const reducedData =
+      // surveyDataArray.length !== 0 &&
+      surveyDataArray.reduce((acc, value) => {
+        value.formData.forEach((item, i) => {
+          if (!acc[item.name]) acc[item.name] = {};
+          if (!acc[item.name].index) acc[item.name].index = i + 1;
+          if (!acc[item.name].value) acc[item.name].value = {};
+          if (!acc[item.name].value[item.value])
+            acc[item.name].value[item.value] = 0;
+          acc = {
+            ...acc,
+            [item.name]: {
+              ...acc[item.name],
+              value: {
+                ...acc[item.name].value,
+                [item.value]: (acc[item.name].value[item.value] || 0) + 1,
+              },
+            },
+          };
+        });
+        return acc;
+      }, {});
+
+    setReducedSurveyData(reducedData);
+  }, [surveyDataArray]);
 
   return (
     <div className={`admin ${sidebarOpen && "collapse"}`}>
