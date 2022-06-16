@@ -8,5 +8,5 @@ This is only the replicated version of the project with altered contents for con
 In the project directory, you can run `npm start`
 
 To view the project in your browser -\
-Survey question page - [http://localhost:3000/survey](http://localhost:3000/survey)\
+Survey questions page - [http://localhost:3000/survey](http://localhost:3000/survey)\
 Admin dashboard - [http://localhost:3000/admin](http://localhost:3000/admin)
