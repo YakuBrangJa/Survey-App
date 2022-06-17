@@ -1,3 +1,28 @@
 .survey {
   padding: 0rem 0 3rem 0;
 }
+
+.view-dashboard {
+  position: fixed;
+  top: 7rem;
+  right: 9%;
+  width: 12rem;
+}
+
+.view-dashboard a {
+  all: unset;
+  padding: 0.8rem 1rem;
+  background-color: var(--purple-contrast1);
+  color: #fefefe;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.view-dashboard a:hover {
+  background-color: var(--purple-dark1);
+}
+
+.view-dashboard p {
+  margin-top: 1rem;
+  color: rgb(247, 85, 31);
+}
