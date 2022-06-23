@@ -18,23 +18,29 @@ import { uiStateActions } from "../../store/ui-state";
 import { useCallback } from "react";
 
 // GLOBAL VARS
-const firebaseDB =
+
+const testUrl =
   "https://netflix-clone-8ede8-default-rtdb.firebaseio.com/thesis-survey.json";
+const url =
+  "https://survey-app-b95ef-default-rtdb.firebaseio.com/thesis-survey.json";
 
 function Admin() {
   const dispatch = useDispatch();
   const { isUpdating } = useSelector((state) => state.uiState);
   const [surveyData, setSurveyData] = useState({});
-  const surveyDataArray = useCallback(Object.values(surveyData), [surveyData]);
+  // const surveyData = {};
+  const surveyDataArray =
+    useCallback(Object.values(surveyData), [surveyData]) || [];
 
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  // const [test, setTest] = useState(false);
 
   const { isLoading, error, sendRequest } = useHttps();
 
   const fetchHandler = useCallback(() => {
     sendRequest(
       {
-        url: firebaseDB,
+        url: url,
         method: "GET",
       },
       setSurveyData
@@ -60,27 +66,28 @@ function Admin() {
 
   useEffect(() => {
     const reducedData =
-      // surveyDataArray.length !== 0 &&
-      surveyDataArray.reduce((acc, value) => {
-        value.formData.forEach((item, i) => {
-          if (!acc[item.name]) acc[item.name] = {};
-          if (!acc[item.name].index) acc[item.name].index = i + 1;
-          if (!acc[item.name].value) acc[item.name].value = {};
-          if (!acc[item.name].value[item.value])
-            acc[item.name].value[item.value] = 0;
-          acc = {
-            ...acc,
-            [item.name]: {
-              ...acc[item.name],
-              value: {
-                ...acc[item.name].value,
-                [item.value]: (acc[item.name].value[item.value] || 0) + 1,
-              },
-            },
-          };
-        });
-        return acc;
-      }, {});
+      surveyDataArray.length === 0
+        ? {}
+        : surveyDataArray.reduce((acc, value) => {
+            value.formData.forEach((item, i) => {
+              if (!acc[item.name]) acc[item.name] = {};
+              if (!acc[item.name].index) acc[item.name].index = i + 1;
+              if (!acc[item.name].value) acc[item.name].value = {};
+              if (!acc[item.name].value[item.value])
+                acc[item.name].value[item.value] = 0;
+              acc = {
+                ...acc,
+                [item.name]: {
+                  ...acc[item.name],
+                  value: {
+                    ...acc[item.name].value,
+                    [item.value]: (acc[item.name].value[item.value] || 0) + 1,
+                  },
+                },
+              };
+            });
+            return acc;
+          }, {});
 
     setReducedSurveyData(reducedData);
   }, [surveyDataArray]);

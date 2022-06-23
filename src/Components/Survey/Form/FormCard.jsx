@@ -31,7 +31,9 @@ function FormCard({
       <fieldset>
         <div className="card-header">
           <legend>
-            {index + ". "} {legend.en} {legend.mm && `(${legend.mm})`}
+            {index + ". "}
+            <span className="en"> {legend.en}</span>{" "}
+            <span className="mm"> {legend.mm && `(${legend.mm})`}</span>
           </legend>
         </div>
         <div className="options">

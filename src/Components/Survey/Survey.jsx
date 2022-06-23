@@ -30,10 +30,10 @@ function Survey({ submitID }) {
         setLoadingStatus={setLoadingStatus}
       />
 
-      <div className="view-dashboard">
+      {/* <div className="view-dashboard">
         <Link to={"/admin"}>View Dashboard</Link>
         <p>Appear only in development mode</p>
-      </div>
+      </div> */}
       <Footer />
     </div>
   );

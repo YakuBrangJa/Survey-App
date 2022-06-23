@@ -9,6 +9,11 @@ import FormCard from "./FormCard";
 import useHttps from "../../../hooks/useHttps";
 import useFormDateFormat from "../../../hooks/useFormDateFormat";
 
+const testUrl =
+  "https://netflix-clone-8ede8-default-rtdb.firebaseio.com/thesis-survey/";
+const url =
+  "https://survey-app-b95ef-default-rtdb.firebaseio.com/thesis-survey/";
+
 function Form({ submitID, setSubmitSuccess, setLoadingStatus }) {
   const cardContentList = useSelector((state) => state.formCardContent);
 
@@ -48,13 +53,16 @@ function Form({ submitID, setSubmitSuccess, setLoadingStatus }) {
   const submitHandler = (e) => {
     e.preventDefault();
 
+    // SUBMIT DISABLED
+    // return;
+
     setSubmitted(true);
     if (!allChecked) return;
 
     initialInputValue();
     console.log(submitID);
     sendRequest({
-      url: `https://netflix-clone-8ede8-default-rtdb.firebaseio.com/thesis-survey/${submitID}.json`,
+      url: `${url}${submitID}.json`,
       method: "PUT",
       body: { formData: { ...formData }, date, submitID },
     });
