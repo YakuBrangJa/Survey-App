@@ -69,7 +69,7 @@ function DataTable({ surveyData }) {
   const [filteredData, setFilteredData] = useState();
   return (
     <div className="table-container">
-      <table className="data-table sticky">
+      <table className="data-table sticky" id={"data-table-id"}>
         <thead>
           <tr>
             <th rowSpan={2}>Submit Info</th>

@@ -65,29 +65,26 @@ function Admin() {
   // console.log(surveyDataArray);
 
   useEffect(() => {
-    const reducedData =
-      surveyDataArray.length === 0
-        ? {}
-        : surveyDataArray.reduce((acc, value) => {
-            value.formData.forEach((item, i) => {
-              if (!acc[item.name]) acc[item.name] = {};
-              if (!acc[item.name].index) acc[item.name].index = i + 1;
-              if (!acc[item.name].value) acc[item.name].value = {};
-              if (!acc[item.name].value[item.value])
-                acc[item.name].value[item.value] = 0;
-              acc = {
-                ...acc,
-                [item.name]: {
-                  ...acc[item.name],
-                  value: {
-                    ...acc[item.name].value,
-                    [item.value]: (acc[item.name].value[item.value] || 0) + 1,
-                  },
-                },
-              };
-            });
-            return acc;
-          }, {});
+    const reducedData = surveyDataArray.reduce((acc, value) => {
+      value.formData.forEach((item, i) => {
+        if (!acc[item.name]) acc[item.name] = {};
+        if (!acc[item.name].index) acc[item.name].index = i + 1;
+        if (!acc[item.name].value) acc[item.name].value = {};
+        if (!acc[item.name].value[item.value])
+          acc[item.name].value[item.value] = 0;
+        acc = {
+          ...acc,
+          [item.name]: {
+            ...acc[item.name],
+            value: {
+              ...acc[item.name].value,
+              [item.value]: (acc[item.name].value[item.value] || 0) + 1,
+            },
+          },
+        };
+      });
+      return acc;
+    }, {});
 
     setReducedSurveyData(reducedData);
   }, [surveyDataArray]);

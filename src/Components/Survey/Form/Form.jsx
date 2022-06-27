@@ -1,5 +1,6 @@
 import "./form.css";
 import React, { useCallback, useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { useSelector } from "react-redux";
 
 // COMPONENTS
@@ -21,6 +22,7 @@ function Form({ submitID, setSubmitSuccess, setLoadingStatus }) {
   const [formData, setFormData] = useState({});
   const [allChecked, setAllChecked] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [confirmBoxOpen, setConfirmBoxOpen] = useState(false);
   // const [submitSuccess, setSubmitSuccess] = useState(false);
 
   const initialInputValue = useCallback(() => {
@@ -85,7 +87,11 @@ function Form({ submitID, setSubmitSuccess, setLoadingStatus }) {
     initialInputValue();
     setSubmitted(false);
     setAllChecked(false);
+    setConfirmBoxOpen(false);
   };
+
+  const confirmBoxOpenHandler = () => setConfirmBoxOpen(true);
+  const confirmBoxCloseHandler = () => setConfirmBoxOpen(false);
 
   useEffect(() => {
     const inputValueArr = Object.values(inputValue);
@@ -95,7 +101,8 @@ function Form({ submitID, setSubmitSuccess, setLoadingStatus }) {
       uncheckedCard.length === 0 &&
       inputValueArr.length ===
         cardContentList.sectionA.content.length +
-          cardContentList.sectionB.content.length
+          cardContentList.sectionB.content.length +
+          cardContentList.sectionC.content.length
     )
       setAllChecked(true);
   }, [inputValue]);
@@ -107,7 +114,8 @@ function Form({ submitID, setSubmitSuccess, setLoadingStatus }) {
       {Object.values(cardContentList).map((section, i) => (
         <section key={i} className={"section"}>
           <h4 className="section-title">{section.title}</h4>
-          <p> {section.instruction}</p>
+          <p className="en"> {section.instruction.en}</p>
+          <p className="mm"> {section.instruction.mm}</p>
           <div className="content-list">
             {section.content.map((card, i) => (
               <FormCard
@@ -126,7 +134,12 @@ function Form({ submitID, setSubmitSuccess, setLoadingStatus }) {
       ))}
 
       {formIsInValid && (
-        <p className="form-warning">All questions must be answered</p>
+        <>
+          <p className="form-warning">All questions must be answered</p>
+          <p className="form-warning">
+            Make sure all the questions are answered
+          </p>
+        </>
       )}
       <div className="form-control">
         <button
@@ -136,11 +149,42 @@ function Form({ submitID, setSubmitSuccess, setLoadingStatus }) {
         >
           {!isLoading ? "SUBMIT" : "SUBMITTING..."}
         </button>
-        <button type="button" className="clear-form" onClick={clearFormHandler}>
+        <button
+          type="button"
+          className="clear-form"
+          onClick={confirmBoxOpenHandler}
+        >
           CLEAR FORM
         </button>
       </div>
+      {confirmBoxOpen && (
+        <ConfirmBox
+          clearFormHandler={clearFormHandler}
+          confirmBoxCloseHandler={confirmBoxCloseHandler}
+        />
+      )}
     </form>
+  );
+}
+
+function ConfirmBox({ clearFormHandler, confirmBoxCloseHandler }) {
+  return createPortal(
+    <div className="confirmBox-backdrop">
+      <div className="confirm-box">
+        <div className="confirm-message">
+          <p>Clear all answers?</p>
+        </div>
+        <div className="confirm-control">
+          <button onClick={clearFormHandler} className="clear">
+            Clear
+          </button>
+          <button className="cancel" onClick={confirmBoxCloseHandler}>
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>,
+    document.getElementById("modal")
   );
 }
 
