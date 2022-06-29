@@ -83,7 +83,7 @@ function DataTable({ surveyData }) {
             {tableHeadLabels.map((content, i) => (
               <th key={i}>
                 <label htmlFor={content.index}>{content.name}</label>
-                {i <= 5 && (
+                {i <= 6 && (
                   <select
                     id={content.index}
                     onChange={(e) => filterHandler(e, content.index)}
@@ -96,7 +96,7 @@ function DataTable({ surveyData }) {
                     ))}
                   </select>
                 )}
-                {i > 5 && (
+                {i > 6 && (
                   <div>
                     <p>{content.legend.en}</p>
                   </div>

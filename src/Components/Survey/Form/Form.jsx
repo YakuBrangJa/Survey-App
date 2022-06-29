@@ -12,8 +12,7 @@ import useFormDateFormat from "../../../hooks/useFormDateFormat";
 
 const testUrl =
   "https://netflix-clone-8ede8-default-rtdb.firebaseio.com/thesis-survey/";
-const url =
-  "https://survey-app-b95ef-default-rtdb.firebaseio.com/thesis-survey/";
+
 
 function Form({ submitID, setSubmitSuccess, setLoadingStatus }) {
   const cardContentList = useSelector((state) => state.formCardContent);
@@ -22,6 +21,7 @@ function Form({ submitID, setSubmitSuccess, setLoadingStatus }) {
   const [formData, setFormData] = useState({});
   const [allChecked, setAllChecked] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  // const [falseSubmit, setFalseSubmit] = useState(false);
   const [confirmBoxOpen, setConfirmBoxOpen] = useState(false);
   // const [submitSuccess, setSubmitSuccess] = useState(false);
 
@@ -47,6 +47,8 @@ function Form({ submitID, setSubmitSuccess, setLoadingStatus }) {
       ...formData,
       [index - 1]: { name: e.target.name, value: e.target.value },
     });
+
+    if (submitted) setSubmitted(false);
   };
 
   const { isLoading, error, sendRequest } = useHttps();
@@ -55,16 +57,13 @@ function Form({ submitID, setSubmitSuccess, setLoadingStatus }) {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    // SUBMIT DISABLED
-    // return;
-
     setSubmitted(true);
     if (!allChecked) return;
 
     initialInputValue();
     console.log(submitID);
     sendRequest({
-      url: `${url}${submitID}.json`,
+      url: `${testUrl}${submitID}.json`,
       method: "PUT",
       body: { formData: { ...formData }, date, submitID },
     });
@@ -80,8 +79,6 @@ function Form({ submitID, setSubmitSuccess, setLoadingStatus }) {
       setAllChecked(false);
     }
   }, [isLoading, submitted]);
-
-  console.log(isLoading);
 
   const clearFormHandler = () => {
     initialInputValue();
@@ -135,9 +132,13 @@ function Form({ submitID, setSubmitSuccess, setLoadingStatus }) {
 
       {formIsInValid && (
         <>
-          <p className="form-warning">All questions must be answered</p>
-          <p className="form-warning">
-            Make sure all the questions are answered
+          <p className="form-warning en">
+            All questions must be answered. Make sure all the questions are
+            answered.
+          </p>
+          <p className="form-warning mm">
+            မေးခွန်းအားလုံးဖြေဆိုပြီးမှသာ submit ပြုလုပ်နိုင်မည်ဖြစ်သည်။
+            မေးခွန်းအားလုံးဖြေဆိုထားခြင်းရှိမရှိ ပြန်လည်စစ်ဆေးပါ။
           </p>
         </>
       )}

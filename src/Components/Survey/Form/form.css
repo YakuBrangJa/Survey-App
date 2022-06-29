@@ -68,6 +68,10 @@
   color: var(--color-danger2);
 }
 
+.form .form-warning.en {
+  margin-bottom: 0.5rem;
+}
+
 /* confirm box */
 
 .confirmBox-backdrop {

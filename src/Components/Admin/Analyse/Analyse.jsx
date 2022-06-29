@@ -5,7 +5,7 @@ import "./Analyse.css";
 import NavBar from "../NavBar/NavBar";
 
 function Analyse({ surveyData, reducedSurveyData }) {
-  console.log("surveyData: ", surveyData);
+  // console.log("surveyData: ", surveyData);
   console.log("reducedSurveyData: ", reducedSurveyData);
   return (
     <>

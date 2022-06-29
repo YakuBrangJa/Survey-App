@@ -11,7 +11,7 @@ function Footer() {
           <p>naw.ja@metta-myanmar.org</p>
         </div>
       </div>
-      <p>Copyright &bull;&copy; 2022.All rights reserved</p>
+      <p>Copyright &copy; 2022.All rights reserved</p>
     </div>
   );
 }

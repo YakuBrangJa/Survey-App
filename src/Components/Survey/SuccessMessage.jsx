@@ -12,7 +12,7 @@ function SuccessMessage() {
           <p>Your answers have been successfully submitted!</p>
         </div>
         <div className="success-message">
-          <p>Thank you for your participation.</p>
+          <p>Thank you for your participation</p>
         </div>
       </div>
     </div>
